@@ -1,19 +1,18 @@
-// Student Name: Mohit Tanwar
+
+// Student: Mohit Tanwar
 // K = 74
-// Box starts at row 74
-// Width = 16 pixels (1 word)
+// Starting row = 74
+// Width = 48 pixels = 3 words
 // Height = 20 rows
+// Starting address = 16384 + (32 * 74) = 18752
 
 (LOOP)
-// Check keyboard
 @KBD
 D=M
-@75
-D=D-A
 @BLACK
-D;JEQ
+D;JGT
 
-// No K pressed: white
+// No key: erase box
 @0
 D=A
 @R15
@@ -22,48 +21,59 @@ M=D
 0;JMP
 
 (BLACK)
-// K pressed: black
+// Key pressed: draw black
 @1
 D=-A
 @R15
 M=D
 
 (DRAW)
-// Starting screen address = 18752
 @18752
 D=A
 @R13
 M=D
 
-// Height = 20 rows
 @20
 D=A
 @R14
 M=D
 
 (ROW)
-// Draw one 16-pixel word
+// First word
 @R15
 D=M
 @R13
 A=M
 M=D
 
-// Move to next screen row
+// Second word
 @R13
 M=M+1
+@R15
+D=M
+@R13
+A=M
+M=D
 
-@31
+// Third word
+@R13
+M=M+1
+@R15
+D=M
+@R13
+A=M
+M=D
+
+// Advance to next row
+@30
 D=A
 @R13
 M=D+M
 
-// Decrease row counter
 @R14
 MD=M-1
 @ROW
 D;JGT
 
-// Repeat continuously
 @LOOP
 0;JMP
