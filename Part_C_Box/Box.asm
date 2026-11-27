@@ -1,5 +1,6 @@
-// K = 84
-// Box starts at row 84
+// Student Name: Mohit Tanwar
+// K = 74
+// Box starts at row 74
 // Width = 16 pixels (1 word)
 // Height = 20 rows
 
@@ -28,8 +29,8 @@ D=-A
 M=D
 
 (DRAW)
-// Starting screen address = 19072
-@19072
+// Starting screen address = 18752
+@18752
 D=A
 @R13
 M=D
